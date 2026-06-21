@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595 842" role="img" aria-label="Example rendered cover page">
+  <defs>
+    <linearGradient id="cv" x1="0" y1="0" x2="595" y2="842" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B0E14"/>
+      <stop offset="0.4" stop-color="#14121F"/>
+      <stop offset="1" stop-color="#1E2230"/>
+    </linearGradient>
+    <radialGradient id="gv" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(446 84) scale(330)">
+      <stop offset="0" stop-color="#8B5CF6" stop-opacity="0.35"/>
+      <stop offset="0.55" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gi" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(60 716) scale(330)">
+      <stop offset="0" stop-color="#6366F1" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#6366F1" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bd" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="595" height="842" fill="url(#cv)"/>
+  <rect width="595" height="842" fill="url(#gv)"/>
+  <rect width="595" height="842" fill="url(#gi)"/>
+
+  <!-- brand lockup -->
+  <rect x="57" y="104" width="44" height="44" rx="11" fill="url(#bd)"/>
+  <text x="70" y="135" font-family="'Segoe UI', Inter, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">R</text>
+  <text x="114" y="123" font-family="'Segoe UI', Inter, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Your Brand</text>
+  <text x="114" y="140" font-family="'JetBrains Mono', monospace" font-size="8" letter-spacing="2.4" fill="rgba(255,255,255,0.5)">EXAMPLE.COM</text>
+
+  <!-- title block -->
+  <text x="57" y="448" font-family="'JetBrains Mono', monospace" font-size="10.5" letter-spacing="5" fill="rgba(255,255,255,0.55)">AUDIT REPORT</text>
+  <text x="54" y="512" font-family="'Segoe UI', Inter, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.5" fill="#FFFFFF">Payments API</text>
+  <text x="54" y="566" font-family="'Segoe UI', Inter, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.5" fill="#C4B5FD">Security Review</text>
+  <text x="57" y="612" font-family="'Segoe UI', Inter, sans-serif" font-size="15" fill="rgba(255,255,255,0.78)">9 findings &#183; Critical 1 &#183; High 2 &#183; Medium 4 &#183; Low 2.</text>
+  <text x="57" y="634" font-family="'Segoe UI', Inter, sans-serif" font-size="15" fill="rgba(255,255,255,0.78)">Overall score: 7 / 10.</text>
+
+  <!-- meta strip -->
+  <line x1="57" y1="744" x2="538" y2="744" stroke="rgba(255,255,255,0.1)"/>
+  <g font-family="'JetBrains Mono', monospace" font-size="7.5" letter-spacing="2" fill="rgba(255,255,255,0.4)">
+    <text x="57" y="766">DATE</text>
+    <text x="190" y="766">APPLICATION</text>
+    <text x="360" y="766">STATUS</text>
+    <text x="460" y="766">AUTHOR</text>
+  </g>
+  <g font-family="'Segoe UI', Inter, sans-serif" font-size="11" fill="rgba(255,255,255,0.92)">
+    <text x="57" y="784">2026-06-21</text>
+    <text x="190" y="784">Payments API</text>
+    <text x="360" y="784">Final</text>
+    <text x="460" y="784">Jane Doe</text>
+  </g>
+</svg>

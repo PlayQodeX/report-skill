@@ -1,0 +1,22 @@
+{
+  "$schema": "../report-brand.schema.json",
+  "_about": "Example override — an emerald identity on a near-black cover. Render with: --brand branding/examples/forest.json",
+  "name": "Evergreen",
+  "mark": "E",
+  "org_tld": "evergreen.eco",
+  "colors": {
+    "indigo": "#14B8A6",
+    "violet": "#10B981",
+    "violet_soft": "#ECFDF5",
+    "accent_light": "#A7F3D0",
+    "cover_1": "#04140F",
+    "cover_2": "#06231A",
+    "cover_3": "#0B3A2C",
+    "glow_violet": "rgba(16, 185, 129, 0.34)",
+    "glow_indigo": "rgba(20, 184, 166, 0.26)",
+    "mark_from": "#14B8A6",
+    "mark_to": "#10B981",
+    "mark_shadow": "rgba(16, 185, 129, 0.45)",
+    "accent_border": "rgba(16, 185, 129, 0.3)"
+  }
+}

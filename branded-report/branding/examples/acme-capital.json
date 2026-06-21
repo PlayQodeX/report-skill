@@ -1,0 +1,22 @@
+{
+  "$schema": "../report-brand.schema.json",
+  "_about": "Example override — a pink/blue identity on a deep-navy cover. Render with: --brand branding/examples/acme-capital.json",
+  "name": "Acme Capital",
+  "mark": "C",
+  "org_tld": "acme.io",
+  "colors": {
+    "indigo": "#0A84FF",
+    "violet": "#FF2D55",
+    "violet_soft": "#FFF0F3",
+    "accent_light": "#FFD6E0",
+    "cover_1": "#001022",
+    "cover_2": "#04162B",
+    "cover_3": "#0A2540",
+    "glow_violet": "rgba(255, 45, 85, 0.32)",
+    "glow_indigo": "rgba(10, 132, 255, 0.28)",
+    "mark_from": "#0A84FF",
+    "mark_to": "#FF2D55",
+    "mark_shadow": "rgba(255, 45, 85, 0.45)",
+    "accent_border": "rgba(255, 45, 85, 0.3)"
+  }
+}

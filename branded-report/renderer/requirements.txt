@@ -1,0 +1,8 @@
+# Branded Report renderer dependencies.
+# WeasyPrint also needs native libraries (Pango / cairo / GDK-PixBuf):
+#   Linux  — install libpango / libcairo / libgdk-pixbuf via your package manager
+#   macOS  — brew install weasyprint
+#   Windows— render under WSL, or install the GTK runtime
+PyYAML>=6.0
+Markdown>=3.5
+weasyprint>=60

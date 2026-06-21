@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{TITLE}}</title>
+<style>
+  :root {
+    --ink-900: #0B0E14;
+    --ink-800: #141821;
+    --ink-700: #1E2230;
+    --ink-600: #2A2F40;
+    --ink-500: #4A5068;
+    --ink-400: #6B7388;
+    --ink-300: #9EA6BC;
+    --ink-200: #C9CFDE;
+    --ink-100: #E8EBF2;
+    --paper:   #FAFBFC;
+
+    /* ── BRAND TOKENS — overridable per project via a brand JSON (branding/report-brand.json).
+       Every value here is a default; the renderer injects a :root override only when a
+       brand file is active, so a standalone render is unchanged. ── */
+    --brand-indigo:        #6366F1;
+    --brand-violet:        #8B5CF6;
+    --brand-violet-soft:   #F5F3FF;
+    --brand-accent-light:  #C4B5FD;                  /* cover title accent word */
+    --brand-cover-1:       #0B0E14;                  /* cover gradient — dark stops */
+    --brand-cover-2:       #14121F;
+    --brand-cover-3:       #1E2230;
+    --brand-glow-violet:   rgba(139, 92, 246, 0.35); /* cover glow — top-right */
+    --brand-glow-indigo:   rgba(99, 102, 241, 0.28); /* cover glow — bottom-left */
+    --brand-mark-from:     #6366F1;                  /* logo badge gradient start */
+    --brand-mark-to:       #8B5CF6;                  /* logo badge gradient end */
+    --brand-mark-shadow:   rgba(139, 92, 246, 0.45);
+    --brand-accent-border: rgba(139, 92, 246, 0.3);  /* inline-link underline */
+
+    --indigo:  var(--brand-indigo);
+    --violet:  var(--brand-violet);
+    --violet-soft: var(--brand-violet-soft);
+    --indigo-soft: #EEF0FF;
+
+    --emerald: #10B981;
+    --emerald-soft: #ECFDF5;
+    --amber:   #F59E0B;
+    --amber-soft: #FEF3C7;
+    --rose:    #F43F5E;
+    --rose-soft: #FEE2E2;
+    --sky:     #0EA5E9;
+    --sky-soft: #F0F9FF;
+
+    --accent: var(--violet);
+    --accent-soft: var(--violet-soft);
+
+    --mono: "JetBrains Mono", "SF Mono", "Fira Code", "Courier New", monospace;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  @page {
+    size: A4;
+    margin: 18mm 16mm 22mm 16mm;
+    @bottom-left {
+      content: "{{KIND_LABEL}} · {{ORG}}";
+      font-family: var(--sans);
+      font-size: 8pt;
+      color: var(--ink-300);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    @bottom-right {
+      content: counter(page) " / " counter(pages);
+      font-family: var(--mono);
+      font-size: 8pt;
+      color: var(--ink-400);
+    }
+  }
+
+  @page :first {
+    margin: 0;
+    @bottom-left { content: none; }
+    @bottom-right { content: none; }
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--sans);
+    color: var(--ink-900);
+    background: var(--paper);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 10.5pt;
+    line-height: 1.6;
+    letter-spacing: -0.003em;
+  }
+
+  /* ── COVER ──────────────────────────────────────────────────── */
+  .cover {
+    page-break-after: always;
+    height: 297mm;
+    padding: 38mm 20mm 22mm 20mm;
+    background:
+      radial-gradient(circle at 75% 10%, var(--brand-glow-violet) 0%, transparent 55%),
+      radial-gradient(circle at 10% 85%, var(--brand-glow-indigo) 0%, transparent 55%),
+      linear-gradient(135deg, var(--brand-cover-1) 0%, var(--brand-cover-2) 40%, var(--brand-cover-3) 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cover-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10pt;
+  }
+  .cover-mark {
+    width: 40pt;
+    height: 40pt;
+    border-radius: 10pt;
+    background: linear-gradient(135deg, var(--brand-mark-from) 0%, var(--brand-mark-to) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 18pt;
+    letter-spacing: -0.04em;
+    box-shadow: 0 8px 28px var(--brand-mark-shadow);
+  }
+  .cover-brand-text {
+    font-weight: 600;
+    font-size: 13pt;
+    color: white;
+    letter-spacing: -0.01em;
+  }
+  .cover-brand-text small {
+    display: block;
+    font-size: 8pt;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    margin-top: 2pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .cover-kind {
+    font-family: var(--mono);
+    font-size: 9pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .cover-title-block { position: relative; z-index: 1; }
+
+  .cover-title {
+    font-size: 46pt;
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin: 14pt 0 0 0;
+    color: #FFFFFF;
+  }
+  .cover-title .accent-word {
+    color: var(--brand-accent-light);
+  }
+
+  .cover-subtitle {
+    font-size: 14pt;
+    font-weight: 400;
+    color: rgba(255,255,255,0.78);
+    margin-top: 14pt;
+    max-width: 420pt;
+    line-height: 1.5;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 36pt;
+    padding-top: 20pt;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .cover-meta-item .label {
+    font-family: var(--mono);
+    font-size: 7.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 4pt;
+  }
+  .cover-meta-item .value {
+    font-size: 10.5pt;
+    color: rgba(255,255,255,0.92);
+    font-weight: 500;
+  }
+
+  /* ── BODY TYPOGRAPHY ───────────────────────────────────────── */
+  .body {
+    max-width: 165mm;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink-900);
+    line-height: 1.25;
+  }
+
+  h1 {
+    font-size: 22pt;
+    margin: 26pt 0 10pt 0;
+    padding-bottom: 8pt;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  h1:first-child { margin-top: 0; }
+
+  h2 {
+    font-size: 16pt;
+    margin: 22pt 0 8pt 0;
+    color: var(--ink-900);
+  }
+  h2::before {
+    content: "";
+    display: inline-block;
+    width: 3pt;
+    height: 13pt;
+    background: var(--accent);
+    margin-right: 8pt;
+    transform: translateY(1pt);
+    border-radius: 1pt;
+  }
+
+  h3 {
+    font-size: 12.5pt;
+    margin: 18pt 0 6pt 0;
+    color: var(--ink-800);
+  }
+
+  h4 {
+    font-size: 11pt;
+    margin: 14pt 0 4pt 0;
+    color: var(--ink-700);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  p { margin: 0 0 9pt 0; }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--brand-accent-border);
+  }
+
+  strong { color: var(--ink-900); font-weight: 600; }
+  em { color: var(--ink-700); }
+
+  ul, ol {
+    margin: 4pt 0 10pt 0;
+    padding-left: 20pt;
+  }
+  li { margin-bottom: 3pt; }
+  li > p { margin-bottom: 4pt; }
+
+  ul li::marker { color: var(--accent); }
+  ol li::marker { color: var(--accent); font-weight: 600; }
+
+  /* ── CODE ──────────────────────────────────────────────────── */
+  code {
+    font-family: var(--mono);
+    font-size: 9pt;
+    background: var(--ink-100);
+    color: var(--ink-800);
+    padding: 1pt 4pt;
+    border-radius: 3pt;
+    letter-spacing: -0.01em;
+  }
+  pre {
+    font-family: var(--mono);
+    font-size: 8.8pt;
+    line-height: 1.55;
+    background: var(--ink-900);
+    color: #E8EBF2;
+    padding: 10pt 12pt;
+    border-radius: 6pt;
+    overflow-x: auto;
+    margin: 8pt 0 12pt 0;
+    border-left: 3pt solid var(--accent);
+    page-break-inside: avoid;
+  }
+  pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  /* ── TABLES ────────────────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10pt 0 14pt 0;
+    font-size: 9.5pt;
+    page-break-inside: auto;
+  }
+  thead th {
+    background: var(--accent-soft);
+    color: var(--ink-900);
+    font-weight: 600;
+    text-align: left;
+    padding: 7pt 9pt;
+    border-bottom: 1.5px solid var(--accent);
+    font-size: 9pt;
+    letter-spacing: 0.02em;
+  }
+  tbody td {
+    padding: 6pt 9pt;
+    border-bottom: 1px solid var(--ink-100);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: #FBFCFD; }
+
+  /* ── BLOCKQUOTE / CALLOUT ──────────────────────────────────── */
+  blockquote {
+    margin: 10pt 0 12pt 0;
+    padding: 10pt 14pt;
+    border-left: 3pt solid var(--accent);
+    background: var(--accent-soft);
+    color: var(--ink-800);
+    font-style: normal;
+    border-radius: 0 4pt 4pt 0;
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  /* ── HORIZONTAL RULE ───────────────────────────────────────── */
+  hr {
+    border: none;
+    border-top: 1px solid var(--ink-100);
+    margin: 18pt 0;
+  }
+
+  /* ── FRONTMATTER METADATA BANNER (optional) ────────────────── */
+  .doc-meta {
+    display: flex;
+    gap: 20pt;
+    padding: 8pt 12pt;
+    background: var(--ink-100);
+    border-radius: 5pt;
+    font-size: 8.5pt;
+    color: var(--ink-600);
+    margin-bottom: 18pt;
+    font-family: var(--mono);
+  }
+  .doc-meta span strong {
+    color: var(--ink-400);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-right: 5pt;
+    font-weight: 400;
+  }
+
+  /* ── CALLOUT (manually-authored) ───────────────────────────── */
+  .callout {
+    margin: 12pt 0;
+    padding: 10pt 14pt;
+    border-radius: 5pt;
+    border-left: 3pt solid;
+  }
+  .callout.warn   { background: var(--rose-soft);    border-color: var(--rose);    color: #7F1D1D; }
+  .callout.info   { background: var(--sky-soft);     border-color: var(--sky);     color: #0C4A6E; }
+  .callout.ok     { background: var(--emerald-soft); border-color: var(--emerald); color: #064E3B; }
+  .callout.note   { background: var(--amber-soft);   border-color: var(--amber);   color: #78350F; }
+
+  /* ── CHECKLIST ─────────────────────────────────────────────── */
+  ul.task-list, ul li.task-list-item { list-style: none; padding-left: 0; }
+  ul li.task-list-item { margin-left: -20pt; }
+  input[type="checkbox"] { accent-color: var(--accent); margin-right: 6pt; }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="cover-brand">
+    <div class="cover-mark">{{MARK}}</div>
+    <div class="cover-brand-text">
+      {{ORG}}
+      <small>{{ORG_TLD}}</small>
+    </div>
+  </div>
+
+  <div class="cover-title-block">
+    <div class="cover-kind">{{KIND_LABEL}}</div>
+    <h1 class="cover-title">{{TITLE}}</h1>
+    <p class="cover-subtitle">{{SUBTITLE}}</p>
+  </div>
+
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="label">Date</div>
+      <div class="value">{{DATE}}</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Application</div>
+      <div class="value">{{APP}}</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Status</div>
+      <div class="value">{{STATUS}}</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Author</div>
+      <div class="value">{{AUTHOR}}</div>
+    </div>
+  </div>
+</section>
+
+<main class="body">
+{{BODY}}
+</main>
+
+</body>
+</html>

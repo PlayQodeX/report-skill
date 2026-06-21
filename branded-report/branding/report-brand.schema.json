@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/PlayQodeX/report-skill/branding/report-brand.schema.json",
+  "title": "Report brand",
+  "description": "Per-brand theming for the report renderer. Structure, layout, fonts and spacing are fixed by the template; only the values below change between brands.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "_about": { "type": "string", "description": "Free-text note; ignored by the renderer." },
+    "name": { "type": "string", "description": "Org name on the cover lockup and in the page footer." },
+    "mark": { "type": "string", "maxLength": 2, "description": "Single character shown in the logo badge on the cover." },
+    "org_tld": { "type": "string", "description": "Small caps line under the org name (e.g. a domain)." },
+    "colors": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Each key maps to a --brand-* CSS variable. Omit a key to keep the template default. Values are any valid CSS colour (hex or rgba()).",
+      "properties": {
+        "indigo":        { "type": "string", "description": "Brand secondary; logo badge gradient start." },
+        "violet":        { "type": "string", "description": "Primary accent: headings, rules, links, list markers, table header border." },
+        "violet_soft":   { "type": "string", "description": "Soft accent: table header background and blockquote background." },
+        "accent_light":  { "type": "string", "description": "Light accent used to tint a single title word on the cover." },
+        "cover_1":       { "type": "string", "description": "Cover gradient — darkest stop." },
+        "cover_2":       { "type": "string", "description": "Cover gradient — middle stop." },
+        "cover_3":       { "type": "string", "description": "Cover gradient — lightest stop." },
+        "glow_violet":   { "type": "string", "description": "Cover glow, top-right (use rgba for transparency)." },
+        "glow_indigo":   { "type": "string", "description": "Cover glow, bottom-left (use rgba for transparency)." },
+        "mark_from":     { "type": "string", "description": "Logo badge gradient start." },
+        "mark_to":       { "type": "string", "description": "Logo badge gradient end." },
+        "mark_shadow":   { "type": "string", "description": "Logo badge drop shadow (rgba)." },
+        "accent_border": { "type": "string", "description": "Inline-link underline colour (rgba)." }
+      }
+    }
+  }
+}

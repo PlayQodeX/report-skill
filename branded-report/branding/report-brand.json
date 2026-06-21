@@ -1,0 +1,22 @@
+{
+  "$schema": "./report-brand.schema.json",
+  "_about": "Default brand for the report renderer. Edit these values to make every report yours — or pass a different file with --brand. The `colors` keys map 1:1 onto the template's --brand-* CSS variables; omit any key to keep the template default. See branding/examples/ for real overrides and branding/report-brand.schema.json for the field reference.",
+  "name": "Your Brand",
+  "mark": "R",
+  "org_tld": "example.com",
+  "colors": {
+    "indigo": "#6366F1",
+    "violet": "#8B5CF6",
+    "violet_soft": "#F5F3FF",
+    "accent_light": "#C4B5FD",
+    "cover_1": "#0B0E14",
+    "cover_2": "#14121F",
+    "cover_3": "#1E2230",
+    "glow_violet": "rgba(139, 92, 246, 0.35)",
+    "glow_indigo": "rgba(99, 102, 241, 0.28)",
+    "mark_from": "#6366F1",
+    "mark_to": "#8B5CF6",
+    "mark_shadow": "rgba(139, 92, 246, 0.45)",
+    "accent_border": "rgba(139, 92, 246, 0.3)"
+  }
+}
