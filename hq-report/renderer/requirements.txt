@@ -1,4 +1,4 @@
-# Branded Report renderer dependencies.
+# HQ Report renderer dependencies.
 # WeasyPrint also needs native libraries (Pango / cairo / GDK-PixBuf):
 #   Linux  — install libpango / libcairo / libgdk-pixbuf via your package manager
 #   macOS  — brew install weasyprint

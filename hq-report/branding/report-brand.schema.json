@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/PlayQodeX/report-skill/branding/report-brand.schema.json",
+  "$id": "https://github.com/PlayQodeX/report-skill/hq-report/branding/report-brand.schema.json",
   "title": "Report brand",
   "description": "Per-brand theming for the report renderer. Structure, layout, fonts and spacing are fixed by the template; only the values below change between brands.",
   "type": "object",

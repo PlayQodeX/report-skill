@@ -1,5 +1,5 @@
 ---
-name: branded-report
+name: hq-report
 description: >-
   Turn a Markdown file into a polished, branded PDF report — audit, plan, report,
   review, reference, memo, RFC, or agent-spec — with a dark cover / title page,
@@ -11,7 +11,7 @@ description: >-
   template.
 ---
 
-# Branded Report
+# HQ Report
 
 Produce a professional PDF from Markdown: a **dark cover / title page**, accent
 headings, clean tables, callouts, and a kind-label + page-number footer. The look
@@ -22,7 +22,7 @@ A report is **two files**: a hand-edited `.md` (with YAML frontmatter) and the
 `.pdf` rendered from it. You never style a document by hand — the cover, colours
 and layout live in the renderer.
 
-> Paths below are relative to this skill folder (`branded-report/`).
+> Paths below are relative to this skill folder (`hq-report/`).
 
 ---
 

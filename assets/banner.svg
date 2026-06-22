@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" role="img" aria-label="Branded Report — Markdown to a branded PDF with a title page">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" role="img" aria-label="HQ Report — Markdown to a branded PDF with a title page">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="400" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0B0E14"/>
@@ -42,7 +42,7 @@
     <rect x="21" y="39" width="6" height="3.4" rx="1" fill="#F43F5E"/>
     <rect x="29" y="39" width="6" height="3.4" rx="1" fill="#F59E0B"/>
 
-    <text x="80" y="30" font-family="'Segoe UI', Inter, system-ui, sans-serif" font-size="40" font-weight="800" letter-spacing="-1" fill="#FFFFFF">Branded <tspan fill="#C4B5FD">Report</tspan></text>
+    <text x="80" y="30" font-family="'Segoe UI', Inter, system-ui, sans-serif" font-size="40" font-weight="800" letter-spacing="-1" fill="#FFFFFF">HQ <tspan fill="#C4B5FD">Report</tspan></text>
     <text x="82" y="58" font-family="'Segoe UI', Inter, system-ui, sans-serif" font-size="17" fill="rgba(255,255,255,0.72)">Markdown in &#8594; a branded PDF with a title page out.</text>
   </g>
 

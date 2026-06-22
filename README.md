@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Branded Report — Markdown in, a branded PDF with a title page out" width="100%">
+  <img src="assets/banner.svg" alt="HQ Report — Markdown in, a branded PDF with a title page out" width="100%">
 </p>
 
 <p align="center">
@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/Claude%20Code-skill-8B5CF6" alt="Claude Code skill">
 </p>
 
-# Branded Report
+# HQ Report
 
 Turn a Markdown file into a **polished, branded PDF** — with a real **title page**.
 Audits, technical reports, plans, security reviews, references: write the words in
@@ -50,18 +50,18 @@ git clone https://github.com/PlayQodeX/report-skill.git
 cd report-skill
 
 # install the renderer's dependencies (see "Requirements" for native libs)
-pip install -r branded-report/renderer/requirements.txt
+pip install -r hq-report/renderer/requirements.txt
 
 # render the bundled example
-python3 branded-report/renderer/render-doc-pdf.py examples/sample-report.md
+python3 hq-report/renderer/render-doc-pdf.py examples/sample-report.md
 # -> examples/sample-report.pdf  (page 1 is the branded cover)
 ```
 
 Theme it your way:
 
 ```bash
-python3 branded-report/renderer/render-doc-pdf.py examples/sample-report.md \
-  --brand branded-report/branding/examples/acme-capital.json
+python3 hq-report/renderer/render-doc-pdf.py examples/sample-report.md \
+  --brand hq-report/branding/examples/acme-capital.json
 ```
 
 ## Use it as a Claude Code skill
@@ -69,13 +69,13 @@ python3 branded-report/renderer/render-doc-pdf.py examples/sample-report.md \
 Copy the self-contained skill folder into your skills directory:
 
 ```bash
-cp -r branded-report ~/.claude/skills/        # user-wide
-# or:  cp -r branded-report .claude/skills/    # one project
+cp -r hq-report ~/.claude/skills/        # user-wide
+# or:  cp -r hq-report .claude/skills/    # one project
 ```
 
 Then just ask Claude to *"write an audit of X as a branded PDF report"* — the
-`branded-report` skill carries the structure, the renderer and the default brand.
-`branded-report/SKILL.md` is the entry point; the `references/` files hold the full
+`hq-report` skill carries the structure, the renderer and the default brand.
+`hq-report/SKILL.md` is the entry point; the `references/` files hold the full
 spec.
 
 ## Use it standalone (CLI)
@@ -112,7 +112,7 @@ the brand per document.
 ## Branding
 
 Colours, the badge letter and the org name live in
-[`branded-report/branding/report-brand.json`](branded-report/branding/report-brand.json).
+[`hq-report/branding/report-brand.json`](hq-report/branding/report-brand.json).
 Edit it to make every report yours, or pass another file with `--brand`. Omitted
 keys fall back to the template default, so a minimal re-skin is a few lines.
 
@@ -122,12 +122,12 @@ keys fall back to the template default, so a minimal re-skin is a few lines.
 | `branding/examples/acme-capital.json` | Pink/blue on deep navy |
 | `branding/examples/forest.json` | Emerald on near-black |
 
-Field reference: [`report-brand.schema.json`](branded-report/branding/report-brand.schema.json).
-Full guide: [`references/branding.md`](branded-report/references/branding.md).
+Field reference: [`report-brand.schema.json`](hq-report/branding/report-brand.schema.json).
+Full guide: [`references/branding.md`](hq-report/references/branding.md).
 
 ## Writing a strong report
 
-[`references/report-structure.md`](branded-report/references/report-structure.md)
+[`references/report-structure.md`](hq-report/references/report-structure.md)
 describes the recommended shape — numbered sections, the
 `CRITICAL/HIGH/MEDIUM/LOW/PASS` severity vocabulary, a risk summary, lettered
 appendices, and a calm third-person tone. It's guidance, not enforced — any
@@ -137,7 +137,7 @@ Markdown renders.
 
 ```
 report-skill/
-├── branded-report/              ← the self-contained skill (copy into .claude/skills/)
+├── hq-report/              ← the self-contained skill (copy into .claude/skills/)
 │   ├── SKILL.md                 ← skill entry point
 │   ├── references/
 │   │   ├── design-system.md     ← every colour, font, size; the exact look
@@ -159,7 +159,7 @@ report-skill/
 ## Requirements
 
 Python 3.9+, and the deps in
-[`requirements.txt`](branded-report/renderer/requirements.txt) (PyYAML, Markdown,
+[`requirements.txt`](hq-report/renderer/requirements.txt) (PyYAML, Markdown,
 **WeasyPrint**). WeasyPrint needs native libraries (Pango / cairo / GDK-PixBuf):
 
 | Platform | Setup |
@@ -182,7 +182,7 @@ active — injects a tiny `:root` override that re-points the template's `--bran
 CSS variables. WeasyPrint prints the result to an A4 PDF. The cover, footer,
 typography and table styling all live in one template; the brand is the only thing
 that varies. See
-[`references/design-system.md`](branded-report/references/design-system.md) for the
+[`references/design-system.md`](hq-report/references/design-system.md) for the
 complete spec.
 
 ## License
